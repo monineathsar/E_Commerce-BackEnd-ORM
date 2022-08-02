@@ -3,26 +3,77 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
 
-router.get('/', (req, res) => {
-  // find all tags
-  // be sure to include its associated Product data
+// find all tags
+router.get('/', async (req, res) => {
+  try {
+    const tagsData = await Tag.findAll({
+      // to include its associated Product data
+      include: [{ model: Product }, { model: ProductTag }],
+    });
+    res.status(200).json(tagsData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-router.get('/:id', (req, res) => {
-  // find a single tag by its `id`
-  // be sure to include its associated Product data
+// find a single tag by its `id`
+router.get('/:id', async (req, res) => {
+  try {
+    const tagsData = await Tag.findByPk(req.params.id, {
+      // to include its associated Product data
+      include: [{ model: Product }, { model: ProductTag }],
+    });
+    if (!tagsData) {
+      res.status(404).json({ message: 'No tag with this id!' });
+      return;
+    }
+    res.status(200).json(tagsData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-router.post('/', (req, res) => {
-  // create a new tag
+// creates new tag
+router.post('/', async (req, res) => {
+  const tagsData = await Tag.create(req.body);
+
+  return res.json(tagsData);
 });
 
-router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
+// update a tag's name by its `id` value
+router.put('/:id', async (req, res) => {
+  try {
+    const tagsData = await Tag.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!tagsData[0]) {
+      res.status(404).json({ message: 'No tag with this id!' });
+      return;
+    }
+    res.status(200).json(tagsData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
+// delete on tag by its `id` value
+router.delete('/:id', async (req, res) => {
+  try {
+    const tagsData = await Tag.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!tagsData) {
+      res.status(404).json({ message: 'No tag with this id!' });
+      return;
+    }
+    res.status(200).json(tagsData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
