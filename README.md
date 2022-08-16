@@ -32,19 +32,20 @@ THEN I am able to successfully create, update, and delete data in my database
 
 The following link will demonstrate how to create the schema from the MySQL shell, seed the database, and start the application:
 
-link goes here
+https://youtu.be/X-WrXKhvL1Y
 
 
 The following link will demonstrate how to “GET all Categories”, “GET a Category by its id”, “POST a Category", “PUT a Category", and "DELETE a Category":
 
-link goes here
+https://youtu.be/AcKw6LtYoNU
 
 
 The following link will demonstrate how to “GET all Products”, “GET a Product by its id”, “POST a Product", “PUT a Product", and "DELETE a Product":
 
-link goes here
+https://youtu.be/lXzqytcCG60
 
 
 The following link will demonstrate how to “GET all Tags”, “GET a Tag by its id”, “POST a Tag", “PUT a Tag", and "DELETE a Tag":
 
-link goes here
+https://youtu.be/h4Dha8sEDKY
+
